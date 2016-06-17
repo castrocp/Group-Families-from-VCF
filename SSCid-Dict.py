@@ -66,21 +66,21 @@ def main():
 				if member.startswith(ID) and member.endswith("s1"):  #find sibling column
 					for column, ssc in ColumnDictionary.items(): 
 						if ssc == SSC:  
-							probandcolumn = column
+							siblingcolumn = column
 
 						
 			for member, SSC in sorted(FamilyMemberdictionary.items()): 
 				if member.startswith(ID) and member.endswith("p1"): #find proband column
 					for column, ssc in ColumnDictionary.items(): 
 						if ssc == SSC:  
-							siblingcolumn = column
+							probandcolumn = column
 
 			with open("testVCF") as originalVCF: #Use this line instead of next when running on test file
 			#with gzip.open("2014-11-06_REI_final.recalibrated_variants.vcf.gz") as originalVCF:
 				for line in originalVCF:
 					if not line.startswith("##"): #skips over info lines. Starts with column header line
-						famVCF.write(line.split("\t")[0]+"\t"+line.split("\t")[1]+"\t"+line.split("\t")[2]+"\t"+line.split("\t")[3]+"\t"+line.split("\t")[4]+"\t"+line.split("\t")[5]+"\t"+line.split("\t")[6]+"\t"+line.split("\t")[7]+"\t"+line.split("\t")[8]+"\t"+line.split("\t")[fathercolumn+9]+"\t"+line.split("\t")[mothercolumn+9]+"\t"+line.split("\t")[probandcolumn+9]+"\t"+line.split("\t")[siblingcolumn+9]+"\n")  #account for first SSC column starting at column 10			
-						
+						famVCF.write(line.split("\t")[0]+"\t"+line.split("\t")[1]+"\t"+line.split("\t")[2]+"\t"+line.split("\t")[3]+"\t"+line.split("\t")[4]+"\t"+line.split("\t")[5]+"\t"+line.split("\t")[6]+"\t"+line.split("\t")[7]+"\t"+line.split("\t")[8]+"\t"+line.split("\t")[fathercolumn+9]+"\t"+line.split("\t")[mothercolumn+9]+"\t"+line.split("\t")[siblingcolumn+9]+"\t"+line.split("\t")[probandcolumn+9]+"\n")  #account for first SSC column starting at column 10			
+						 
 
 if __name__ == '__main__':
 	main()
